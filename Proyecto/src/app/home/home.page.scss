@@ -1,0 +1,67 @@
+body {
+  background-color: #3498db;
+}
+#container {
+  text-align: center;
+
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+#container strong {
+  font-size: 20px;
+  line-height: 26px;
+}
+
+#container p {
+  font-size: 16px;
+  line-height: 22px;
+
+  color: #8c8c8c;
+
+  margin: 0;
+}
+
+#container a {
+  text-decoration: none;
+}
+
+.cam {
+  width: 90%; /* Ancho del cuadrado de la cámara */
+  height: 50%; /* Altura del cuadrado de la cámara */
+  margin: 0 auto; /* Centra horizontalmente */
+  background-color: #ccc; /* Color de fondo gris representativo */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.logo-studiante {
+  margin-top: 100px; 
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.asistencia {
+  margin-top: 10px; 
+  text-align: center;
+  font-size: 18px; 
+}
+
+.texto-azul {
+  color: rgba(0, 0, 255, 0.747); /* Las primeras 7 letras serán azules */
+}
+
+.texto-amarillo {
+  color: rgba(255, 255, 0, 0.788); /* Las letras restantes serán amarillas */
+}
+
+.custom-title {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
