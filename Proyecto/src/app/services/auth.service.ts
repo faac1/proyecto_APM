@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { AngularFireDatabase } from '@angular/fire/compat/database';
+import { getAuth, updatePassword } from 'firebase/auth';
 
 
 
@@ -9,7 +10,17 @@ import { AngularFireDatabase } from '@angular/fire/compat/database';
   providedIn: 'root'
 })
 export class AuthService {
-  private apiUrl = 'http://localhost:3000'; // Reemplaza esto con la URL de tu servidor Node.js
+  async cambiarContrasena(nuevaContrasena: string) {
+    const auth = getAuth();
+    const user = auth.currentUser;
+
+    if (user) {
+      await updatePassword(user, nuevaContrasena);
+    } else {
+      throw new Error('Usuario no autenticado.');
+    }
+  }
+
 
   constructor( private afAuth: AngularFireAuth,
     private afDatabase: AngularFireDatabase) { }
