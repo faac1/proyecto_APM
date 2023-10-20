@@ -1,0 +1,12 @@
+<ion-header [translucent]="true">
+  <ion-toolbar color="primary">
+    <ion-title>
+      ¡¡Hola {{ usuarioNombre }}!
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+
+<ng-container *ngIf="usuarioNombre !== null">
+  ¡Hola {{ usuarioNombre }}!
+</ng-container>

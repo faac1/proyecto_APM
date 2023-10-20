@@ -1,54 +1,39 @@
-import { Component, OnInit } from '@angular/core';
-import {
-  FormGroup,
-  FormControl,
-  Validators,
-  FormBuilder
-} from '@angular/forms';
-import { AlertController } from '@ionic/angular';
-import  queryString  from 'query-string';
+import { Component } from '@angular/core';
+import { AngularFirestore } from '@angular/fire/compat/firestore';
+import { NavController } from '@ionic/angular';
+
 
 @Component({
   selector: 'app-registro',
   templateUrl: './registro.page.html',
   styleUrls: ['./registro.page.scss'],
 })
-export class RegistroPage implements OnInit {
+export class RegistroPage {
 
-  formularioRegistro: FormGroup;
+  email: string='';
+  password: string='';
+  nombre: string='';
+  role: string='';
 
-  constructor(public fb: FormBuilder, public alertController: AlertController) { 
-    this.formularioRegistro = this.fb.group({
-      'email': new FormControl("",Validators.required),
-      'password': new FormControl("",Validators.required),
-      'confirmacionPassword': new FormControl("",Validators.required),
-    });
-  }
+  constructor(private firestore: AngularFirestore,
+      public navCtrl: NavController) { }
 
-  ngOnInit() {
-  }
+  async registrarUsuario() {
+    const usuario = {
+      email: this.email,
+      password: this.password,
+      nombre: this.nombre,
+      role: this.role
+    };
 
+    try {
+      await this.firestore.collection('usuarios').add(usuario);
+      console.log('Usuario registrado correctamente en la base de datos.');
+      localStorage.setItem('user', JSON.stringify(usuario));
+      this.navCtrl.navigateRoot('inicio');
 
-
-  async guardar() {
-    var f = this.formularioRegistro.value;
-
-    if(this.formularioRegistro.invalid){
-      const alert = await this.alertController.create({
-        header: 'Datos incompletos',
-        message: 'Tienes que llenar todos los datos',
-        buttons: ['Aceptar']
-      });
-  
-      await alert.present();
-      return;
+    } catch (error) {
+      console.error('Error al registrar usuario en la base de datos:', error);
     }
-    
-    var usuario = {
-      email: f.email,
-      password: f.password  
-    }
-
-    localStorage.setItem('usuario',JSON.stringify(usuario));
   }
 }
