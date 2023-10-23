@@ -1,0 +1,34 @@
+<ion-header [translucent]="true">
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+    <ion-title>Login</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding" class="ion-text-center" class="ion-justify-content-center" class="ion-align-items-center" style="height: 100vh;"> 
+  <form (ngSubmit)="iniciarSesion()" >
+    <ion-item>
+      <ion-label position="floating">Email</ion-label>
+      <ion-input [(ngModel)]="email" type="email" name="email" required></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="floating">Contraseña</ion-label>
+      <ion-input [(ngModel)]="password" type="password" name="password" required></ion-input>
+    </ion-item>
+
+    <ion-button expand="full" type="submit" class="ion-margin-top">Iniciar Sesión</ion-button>
+  
+  </form>
+</ion-content>
+
+<ion-footer position="bottom">
+  <ion-toolbar>
+    <ion-buttons slot="end">
+      <ion-button [routerLink]="['/registro']">Registrarse</ion-button>
+      <ion-button [routerLink]="['/cambio-contrasena']">recuperar contraseña</ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-footer>
